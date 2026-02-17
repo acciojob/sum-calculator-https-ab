@@ -10,7 +10,7 @@ export default function SumCalculator() {
   }
 
   function handleAdd() {
-    const parsed = Number(input); // safer
+    const parsed = Number(input);
     if (!isNaN(parsed)) {
       setNumbers(prev => [...prev, parsed]);
       setInput("");
@@ -24,21 +24,22 @@ export default function SumCalculator() {
 
   return (
     <div>
-      <h1>Sum Calculator</h1>
+      <h1 data-cy="title">Sum Calculator</h1>
 
       <input
         type="number"
         value={input}
         onChange={handleChange}
         placeholder="Enter a number"
+        data-cy="input"
       />
-      <button onClick={handleAdd}>Add</button>
+      <button onClick={handleAdd} data-cy="add-btn">Add</button>
 
       <h3>Numbers:</h3>
-      <p>{numbers.join(", ") || "-"}</p>
+      <p data-cy="numbers">{numbers.length ? numbers.join(", ") : "-"}</p>
 
       <h3>Total Sum:</h3>
-      <p>Sum: {sum}</p>
+      <p data-cy="sum">Sum: {sum}</p>
     </div>
   );
 }
