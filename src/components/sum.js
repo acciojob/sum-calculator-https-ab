@@ -36,7 +36,7 @@ export default function SumCalculator() {
       <button onClick={handleAdd} data-cy="add-btn">Add</button>
 
       <h3>Numbers:</h3>
-      <p data-cy="numbers">{numbers.length ? numbers.join(", ") : "-"}</p>
+      <p data-cy="numbers">{numbers.join(", ")}</p>
 
       <h3>Total Sum:</h3>
       <p data-cy="sum">Sum: {sum}</p>
