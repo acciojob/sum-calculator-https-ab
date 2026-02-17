@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 export default function SumCalculator() {
   const [numbers, setNumbers] = useState([]);
@@ -12,15 +12,14 @@ export default function SumCalculator() {
   function handleAdd() {
     const parsed = Number(input);
     if (!isNaN(parsed)) {
-      setNumbers(prev => [...prev, parsed]);
+      setNumbers(prev => {
+        const newNumbers = [...prev, parsed];
+        setSum(newNumbers.reduce((acc, curr) => acc + curr, 0));
+        return newNumbers;
+      });
       setInput("");
     }
   }
-
-  useEffect(() => {
-    const total = numbers.reduce((acc, curr) => acc + curr, 0);
-    setSum(total);
-  }, [numbers]);
 
   return (
     <div>
@@ -35,10 +34,10 @@ export default function SumCalculator() {
       />
       <button onClick={handleAdd} data-cy="add-btn">Add</button>
 
-      <h3>Numbers:</h3>
+      <h3 data-cy="numbers-title">Numbers:</h3>
       <p data-cy="numbers">{numbers.join(", ")}</p>
 
-      <h3>Total Sum:</h3>
+      <h3 data-cy="sum-title">Total Sum:</h3>
       <p data-cy="sum">Sum: {sum}</p>
     </div>
   );
