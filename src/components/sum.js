@@ -12,11 +12,9 @@ export default function SumCalculator() {
   function handleAdd() {
     const parsed = Number(input);
     if (!isNaN(parsed)) {
-      setNumbers(prev => {
-        const newNumbers = [...prev, parsed];
-        setSum(newNumbers.reduce((acc, curr) => acc + curr, 0));
-        return newNumbers;
-      });
+      const newNumbers = [...numbers, parsed];
+      setNumbers(newNumbers);
+      setSum(newNumbers.reduce((acc, curr) => acc + curr, 0));
       setInput("");
     }
   }
@@ -34,11 +32,15 @@ export default function SumCalculator() {
       />
       <button onClick={handleAdd} data-cy="add-btn">Add</button>
 
-      <h3 data-cy="numbers-title">Numbers:</h3>
-      <p data-cy="numbers">{numbers.join(", ")}</p>
+      <div data-cy="numbers-section">
+        <h3>Numbers:</h3>
+        <p data-cy="numbers">{numbers.join(", ")}</p>
+      </div>
 
-      <h3 data-cy="sum-title">Total Sum:</h3>
-      <p data-cy="sum">Sum: {sum}</p>
+      <div data-cy="sum-section">
+        <h3>Total Sum:</h3>
+        <p data-cy="sum">Sum: {sum}</p>
+      </div>
     </div>
   );
 }
