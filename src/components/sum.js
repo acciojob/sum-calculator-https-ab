@@ -23,25 +23,10 @@ export default function SumCalculator() {
 
   // Recalculate sum asynchronously whenever numbers change
   useEffect(() => {
-    let isMounted = true;
-
-    async function calculateSum() {
-      // Simulate async work (like heavy calculation or API)
-      await new Promise(resolve => setTimeout(resolve, 0));
-
-      const total = numbers.reduce((acc, curr) => acc + curr, 0);
-
-      if (isMounted) {
-        setSum(total);
-      }
-    }
-
-    calculateSum();
-
-    return () => {
-      isMounted = false;
-    };
+    const total = numbers.reduce((acc, curr) => acc + curr, 0);
+    setSum(total);
   }, [numbers]);
+  
 
   return (
     <div>
